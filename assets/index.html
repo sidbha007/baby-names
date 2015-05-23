@@ -9,6 +9,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="styles/app.css"/>
     <!--[if lt IE 9]>
@@ -46,10 +47,22 @@
               {{name.nm}}
             </md-button>
           </md-item>-->
-          <div layout="row" layout-align="center center" >
+          <md-grid-list layout="row" layout-align="center center"
+            md-cols-gt-md="26" md-cols-sm="9" md-cols-md="13" md-row-height="40px"
+            md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+            <md-grid-tile
+              ng-repeat="ltrs in ul.letters"
+              md-colspan-gt-sm="1"
+              md-rowspan-gt-sm="1">
+              <md-button class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" >{{ltrs.ltr}}</md-button>
+            </md-grid-tile>
+          </md-grid-list>
+
+
+          <!--<div layout="row" layout-align="center center" >
             <md-button ng-repeat="ltrs in ul.letters" class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" >{{ltrs.ltr}}</md-button>
           </div>
-          <!--<div style="width:500px;height:90px;" layout="row" layout-wrap ng-repeat="name in ul.names">
+          <div style="width:500px;height:90px;" layout="row" layout-wrap ng-repeat="name in ul.names">
             <div flex="33" layout="row" layout-align="center start">{{ name.nm }}</div>
             <div flex="66" layout="row" layout-align="end center"> {{ name.dc }}</div>
           </div>-->
