@@ -48,9 +48,9 @@
             </md-button>
           </md-item>-->
           <md-radio-group layout="row" ng-model="ul.gender" ng-change="ul.loadNames()">
-            <md-radio-button value="g" class="md-title" >Girl</md-radio-button>
-            <md-radio-button value="b" class="md-primary md-title" > Boy </md-radio-button>
-            <md-radio-button value="" class="md-primary md-title"> Any </md-radio-button>
+            <md-radio-button value="g" class="md-primary md-title" >Girl</md-radio-button>
+            <md-radio-button value="b" class=" md-title" > Boy </md-radio-button>
+            <md-radio-button value="" class="md-primary md-title"> Both </md-radio-button>
           </md-radio-group>
           <md-divider class="divider-btm"></md-divider>
           <md-grid-list layout="row" layout-align="center center"
@@ -124,8 +124,8 @@
                       .icon("phone"      , "./svg/phone.svg"       , 512);
 
                       $mdThemingProvider.theme('default')
-                          .primaryPalette('brown')
-                          .accentPalette('red');
+                          .primaryPalette('deep-orange')
+                          .accentPalette('amber');
 
               });
 

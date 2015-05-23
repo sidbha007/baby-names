@@ -17,7 +17,7 @@ html, body {
 }
 
 md-toolbar h1 {
-  margin: auto;
+  margin: auto auto auto 50px;
 }
 
 /* Sidenav area */
@@ -99,7 +99,7 @@ md-button.menuBtn > md-icon {
 
 md-toolbar h1 {
   font-size: 1.250em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .avatar {
