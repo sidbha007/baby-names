@@ -41,7 +41,7 @@ module.exports.session = {
   * session store that can be shared across multiple Sails.js servers        *
   ***************************************************************************/
 
-  // adapter: 'redis',
+  adapter: 'redis',
 
   /***************************************************************************
   *                                                                          *
@@ -52,6 +52,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
+  url: 'redis://rediscloud:Hi8W8YlRtsMPLXmD@pub-redis-15442.us-east-1-1.2.ec2.garantiadata.com:15442'
   // host: 'localhost',
   // port: 6379,
   // ttl: <redis session TTL in seconds>,

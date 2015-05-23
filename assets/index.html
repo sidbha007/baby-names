@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Baby Names</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="styles/app.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+
+    <md-toolbar layout="row">
+      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <h1>Baby Names</h1>
+    </md-toolbar>
+
+    <div flex layout="row" style="overflow: auto;">
+
+        <!--<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
+          <md-list>
+            <md-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                  {{it.name}}
+                </md-button>
+            </md-item>
+          </md-list>
+        </md-sidenav>-->
+
+        <md-content md-scroll-y flex layout-padding id="content">
+          <!--<md-item ng-repeat="name in ul.names">
+            <md-button ng-click="">
+              <md-icon  class="avatar"></md-icon>
+              {{name.nm}}
+            </md-button>
+          </md-item>-->
+          <div layout="row" layout-align="center center" >
+            <md-button ng-repeat="ltrs in ul.letters" class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" >{{ltrs.ltr}}</md-button>
+          </div>
+          <!--<div style="width:500px;height:90px;" layout="row" layout-wrap ng-repeat="name in ul.names">
+            <div flex="33" layout="row" layout-align="center start">{{ name.nm }}</div>
+            <div flex="66" layout="row" layout-align="end center"> {{ name.dc }}</div>
+          </div>-->
+
+          <md-card ng-repeat="name in ul.names">
+            <md-card-content>
+              <h2 class="md-title">{{ name.nm }}</h2>
+              <p>
+                {{ name.dc }}
+              </p>
+            </md-card-content>
+            <!--<div class="md-actions" layout="row" layout-align="end center">
+              <md-button>Like</md-button>
+              <md-button>Add</md-button>
+            </div>-->
+          </md-card>
+
+        </md-content>
+
+    </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/angular-touch/angular-touch.min.js"></script>
+
+
+    <script src="./src/users/Users.js"></script>
+    <script src="./src/users/UserController.js"></script>
+    <script src="./src/users/UserService.js"></script>
+
+    <script src="./src/app/services/services.module.js"></script>
+    <script src="./src/app/services/logger.js"></script>
+    <script src="./src/app/services/dataservices.js"></script>
+
+
+    <script type="text/javascript">
+
+          angular
+              .module('starterApp', ['ngMaterial', 'users'])
+              .config(function($mdThemingProvider, $mdIconProvider){
+
+                  $mdIconProvider
+                      .defaultIconSet("./svg/avatars.svg", 128)
+                      .icon("menu"       , "./svg/menu.svg"        , 24)
+                      .icon("share"      , "./svg/share.svg"       , 24)
+                      .icon("google_plus", "./svg/google_plus.svg" , 512)
+                      .icon("hangouts"   , "./svg/hangouts.svg"    , 512)
+                      .icon("twitter"    , "./svg/twitter.svg"     , 512)
+                      .icon("phone"      , "./svg/phone.svg"       , 512);
+
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('brown')
+                          .accentPalette('red');
+
+              });
+
+    </script>
+
+  </body>
+</html>
