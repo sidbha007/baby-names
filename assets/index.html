@@ -47,6 +47,12 @@
               {{name.nm}}
             </md-button>
           </md-item>-->
+          <md-radio-group layout="row" ng-model="ul.gender" ng-change="ul.loadNames()">
+            <md-radio-button value="g" class="md-title" >Girl</md-radio-button>
+            <md-radio-button value="b" class="md-primary md-title" > Boy </md-radio-button>
+            <md-radio-button value="" class="md-primary md-title"> Any </md-radio-button>
+          </md-radio-group>
+          <md-divider class="divider-btm"></md-divider>
           <md-grid-list layout="row" layout-align="center center"
             md-cols-gt-md="26" md-cols-sm="9" md-cols-md="13" md-row-height="40px"
             md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
@@ -54,7 +60,7 @@
               ng-repeat="ltrs in ul.letters"
               md-colspan-gt-sm="1"
               md-rowspan-gt-sm="1">
-              <md-button class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" >{{ltrs.ltr}}</md-button>
+              <md-button class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" ng-class="{'md-primary' : ltrs.ltr === ul.selectedLtr }" >{{ltrs.ltr}}</md-button>
             </md-grid-tile>
           </md-grid-list>
 

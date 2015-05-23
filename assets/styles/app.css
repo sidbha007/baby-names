@@ -109,6 +109,7 @@ md-toolbar h1 {
   border: 1px solid #ddd;
   border-radius: 50%;
   display: inline-block;
+  display: inline-block;
   overflow: hidden;
   margin: 0px;
   vertical-align: middle;
@@ -132,4 +133,8 @@ span.name {
 .letter-button{
   margin: 4px;
   min-width: 30px !important;
+}
+
+md-divider.divider-btm{
+  padding-bottom:15px;
 }

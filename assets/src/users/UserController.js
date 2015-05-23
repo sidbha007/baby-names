@@ -23,6 +23,8 @@
     self.toggleList   = toggleUsersList;
     self.share        = share;
     self.loadNames    = loadNames;
+    self.selectedLtr  = 'A';
+    self.gender       = 'g';
     self.setLetter    = setLetter;
 
     self.names        = [ ];
@@ -36,7 +38,7 @@
             self.selected = users[0];
           });
 
-    loadNames({where: {sx:'g', nm:{'startsWith':'A'}}});
+    loadNames(getCrit());
 
 
     for (var i = 65; i <= 90; i++) {
@@ -46,17 +48,30 @@
 
 
     function loadNames(crit){
-      dataservice.getNames(crit)
+      dataservice.getNames(crit || getCrit())
         .then(function (data) {
           self.names = data;
         });
 
     }
 
-    function setLetter(ltr){
-      loadNames({where: {sx:'g',
-              nm:{'startsWith':ltr}}});
+    function getCrit(){
+      var whereCond = {
+        where: {
+        nm:{'startsWith':self.selectedLtr}
+      },
+        sort: 'nm'
+      };
 
+      if(self.gender){
+        whereCond.where.sx = self.gender;
+      }
+      return whereCond;
+    }
+
+    function setLetter(ltr){
+      self.selectedLtr = ltr;
+      loadNames(getCrit());
     }
 
 
