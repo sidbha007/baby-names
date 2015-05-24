@@ -3,7 +3,7 @@
   angular
        .module('users')
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', 'dataservice',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', 'dataservice','$document',
           UserController
        ]);
 
@@ -14,7 +14,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, dataservice) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, dataservice, $document) {
     var self = this;
 
     self.selected     = null;
@@ -26,6 +26,7 @@
     self.selectedLtr  = 'A';
     self.gender       = 'g';
     self.setLetter    = setLetter;
+    self.pageChange   = pageChange;
 
     self.names        = [ ];
     self.letters        = [ ];
@@ -44,6 +45,12 @@
     for (var i = 65; i <= 90; i++) {
       self.letters.push({ltr:String.fromCharCode(i)});
       //$(select).append('<option>' + string.fromCharCode(i) + '</option>');
+    }
+
+
+    function pageChange(){
+      var lastEc = angular.element($document[0].querySelector("#content"));
+      lastEc[0].scrollTop = 0;
     }
 
 

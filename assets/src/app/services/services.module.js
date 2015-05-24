@@ -9,7 +9,8 @@
                 'ngMaterial',
                 'ngTouch',
                 //'oc.lazyLoad',
-                'ui.router'
+                'ui.router',
+                'angularUtils.directives.dirPagination'
                 //'ui.bootstrap',
                 //'ncy-angular-breadcrumb',
                 //'angular-intro',

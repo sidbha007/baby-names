@@ -138,3 +138,13 @@ span.name {
 md-divider.divider-btm{
   padding-bottom:15px;
 }
+
+.name-dsc{
+  padding-top: 5px;
+  color: #666;
+  font-style: italic;
+}
+
+.md-fa-lg{
+
+}

@@ -11,6 +11,7 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/app.css"/>
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -18,7 +19,7 @@
     <![endif]-->
   </head>
 
-  <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+  <body ng-app="starterApp" layout="column" ng-controller="UserController as ul" autoscroll="true">
 
     <md-toolbar layout="row">
       <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
@@ -26,7 +27,7 @@
       </md-button>
       <h1>Baby Names</h1>
     </md-toolbar>
-
+    <a id="top"></a>
     <div flex layout="row" style="overflow: auto;">
 
         <!--<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
@@ -73,20 +74,33 @@
             <div flex="66" layout="row" layout-align="end center"> {{ name.dc }}</div>
           </div>-->
 
-          <md-card ng-repeat="name in ul.names">
+          <md-card dir-paginate="name in ul.names | itemsPerPage: 50">
             <md-card-content>
-              <h2 class="md-title">{{ name.nm }}</h2>
-              <p>
-                {{ name.dc }}
-              </p>
+              <div layout="row" layout-wrap>
+                <div flex="75">
+                 <span class="md-title">{{ name.nm }}</span><br/>
+                  <span class="name-dsc" >
+                    {{ name.dc }}
+                  </span>
+                </div>
+                <div flex="25" >
+                  <md-button class="md-fab md-mini pull-right" aria-label="Use Android">
+                    <i class="fa fa-star fa-lg md-fa-lg"></i>
+                  </md-button>
+                </div>
+              </div>
+
+
             </md-card-content>
             <!--<div class="md-actions" layout="row" layout-align="end center">
               <md-button>Like</md-button>
               <md-button>Add</md-button>
             </div>-->
           </md-card>
-
+          <dir-pagination-controls boundary-links="true" on-page-change="ul.pageChange(newPageNumber)" class="pull-right">
+          </dir-pagination-controls>
         </md-content>
+
 
     </div>
 
@@ -97,6 +111,8 @@
     <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="./bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="./bower_components/angular-utils-pagination/dirPagination.js"></script>
+
 
 
     <script src="./src/users/Users.js"></script>
@@ -128,6 +144,10 @@
                           .accentPalette('amber');
 
               });
+
+          angular.module('starterApp').config(function(paginationTemplateProvider) {
+            paginationTemplateProvider.setPath('./bower_components/angular-utils-pagination/dirPagination.tpl.html');
+          });
 
     </script>
 
