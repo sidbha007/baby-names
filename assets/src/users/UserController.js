@@ -30,6 +30,7 @@
     self.currentPage = 1;
     self.names        = [ ];
     self.letters        = [ ];
+    self.loading        = false;
     self.addToFavs    = addToFavs;
     // Load all registered users
 
@@ -64,10 +65,12 @@
 
 
     function loadNames(crit){
+      self.loading = true;
       dataservice.getNames(crit || getCrit())
         .then(function (data) {
           self.names = data;
           self.currentPage = 1;
+          self.loading = false;
         });
 
     }

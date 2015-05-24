@@ -64,7 +64,9 @@
               <md-button class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" ng-class="{'md-primary' : ltrs.ltr === ul.selectedLtr }" >{{ltrs.ltr}}</md-button>
             </md-grid-tile>
           </md-grid-list>
-
+          <div layout="row" ng-if="ul.loading" class="loading-br" layout-sm="column" layout-align="space-around">
+            <md-progress-linear md-diameter="20" md-mode="indeterminate"></md-progress-linear>
+          </div>
 
           <!--<div layout="row" layout-align="center center" >
             <md-button ng-repeat="ltrs in ul.letters" class="md-raised letter-button" ng-click="ul.setLetter(ltrs.ltr)" >{{ltrs.ltr}}</md-button>
