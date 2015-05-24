@@ -58,6 +58,7 @@
       dataservice.getNames(crit || getCrit())
         .then(function (data) {
           self.names = data;
+          self.currentPage = 1;
         });
 
     }
