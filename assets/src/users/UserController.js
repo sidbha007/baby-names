@@ -3,7 +3,7 @@
   angular
        .module('users')
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', 'dataservice','$document',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', 'dataservice','$document', 'logger',
           UserController
        ]);
 
@@ -14,7 +14,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, dataservice, $document) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, dataservice, $document, logger) {
     var self = this;
 
     self.selected     = null;
@@ -27,9 +27,10 @@
     self.gender       = 'g';
     self.setLetter    = setLetter;
     self.pageChange   = pageChange;
-
+    self.currentPage = 1;
     self.names        = [ ];
     self.letters        = [ ];
+    self.addToFavs    = addToFavs;
     // Load all registered users
 
     userService
@@ -47,6 +48,14 @@
       //$(select).append('<option>' + string.fromCharCode(i) + '</option>');
     }
 
+
+    function addToFavs(nm, add){
+      dataservice.saveName(nm.id, {fv:add}).then(function(nameRec){
+        logger.info( nm.nm +
+        (add?' saved as a favorite!!': ' removed from favorite!!'));
+        nm.fv=add;
+      });
+    }
 
     function pageChange(){
       var lastEc = angular.element($document[0].querySelector("#content"));
@@ -66,13 +75,16 @@
     function getCrit(){
       var whereCond = {
         where: {
-        nm:{'startsWith':self.selectedLtr}
-      },
+        },
         sort: 'nm'
       };
-
-      if(self.gender){
-        whereCond.where.sx = self.gender;
+      if(self.gender === 'favs'){
+        whereCond.where.fv = true;
+      }else{
+        whereCond.where.nm = {'startsWith':self.selectedLtr};
+        if(self.gender){
+          whereCond.where.sx = self.gender;
+        }
       }
       return whereCond;
     }

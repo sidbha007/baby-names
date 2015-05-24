@@ -11,9 +11,9 @@
         .module('babyn.services')
         .factory('logger',logger);
 
-    logger.$inject = ['$log'];
+    logger.$inject = ['$log', '$mdToast', '$animate'];
 
-    function logger($log){
+    function logger($log, $mdToast, $animate){
 
         var service = {
             showToasters: true,
@@ -27,7 +27,6 @@
 
         return service;
 
-
         function error(message, data, status){
             if(!(status && (status === 401 || status === 403))){
                 //toastr.error(message, 'Error');
@@ -37,7 +36,14 @@
 
         function info(message, data){
             //toastr.info(message);
-            $log.info('Info: ' + message, data);
+          $mdToast.show(
+            $mdToast.simple()
+              .content(message)
+              .position('bottom right')
+              .hideDelay(3000)
+          );
+
+          $log.info('Info: ' + message, data);
         }
 
         function success(message, data){

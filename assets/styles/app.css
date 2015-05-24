@@ -12,12 +12,12 @@ html, body {
   background-color: transparent;
   border: none;
   height: 38px;
-  margin: 16px;
+  margin: 16px 0 16px;
   width: 36px;
 }
 
 md-toolbar h1 {
-  margin: auto auto auto 50px;
+  margin: auto auto auto 20px;
 }
 
 /* Sidenav area */
@@ -145,6 +145,19 @@ md-divider.divider-btm{
   font-style: italic;
 }
 
-.md-fa-lg{
+.baby-nm-ds{
+  display: flex;
+}
 
+.baby-nm-ds i{
+  font-size: 30px;
+  padding: 12px 15px 0 5px;
+}
+
+.baby-grl{
+  color:#FF69B4;
+}
+
+.baby-boy{
+  color:#62BFF8;
 }

@@ -111,7 +111,6 @@
         }
 
         function saveName(id, payload){
-            logger.info('Name creation in progress!');
             return nameResource.save({'id': id}, payload)
                 .$promise
                 .then(saveNameComplete)

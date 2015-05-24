@@ -22,7 +22,7 @@
   <body ng-app="starterApp" layout="column" ng-controller="UserController as ul" autoscroll="true">
 
     <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show Names List">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <h1>Baby Names</h1>
@@ -41,7 +41,7 @@
           </md-list>
         </md-sidenav>-->
 
-        <md-content md-scroll-y flex layout-padding id="content">
+        <md-content md-scroll-y flex layout-padding id="content" ng-cloak>
           <!--<md-item ng-repeat="name in ul.names">
             <md-button ng-click="">
               <md-icon  class="avatar"></md-icon>
@@ -51,10 +51,10 @@
           <md-radio-group layout="row" ng-model="ul.gender" ng-change="ul.loadNames()">
             <md-radio-button value="g" class="md-primary md-title" >Girl</md-radio-button>
             <md-radio-button value="b" class=" md-title" > Boy </md-radio-button>
-            <md-radio-button value="" class="md-primary md-title"> Both </md-radio-button>
+            <md-radio-button value="favs" class="md-primary md-title"> Favs </md-radio-button>
           </md-radio-group>
           <md-divider class="divider-btm"></md-divider>
-          <md-grid-list layout="row" layout-align="center center"
+          <md-grid-list ng-if="ul.gender!=='favs'" layout="row" layout-align="center center"
             md-cols-gt-md="26" md-cols-sm="8" md-cols-md="13" md-row-height="40px"
             md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
             <md-grid-tile
@@ -73,31 +73,63 @@
             <div flex="33" layout="row" layout-align="center start">{{ name.nm }}</div>
             <div flex="66" layout="row" layout-align="end center"> {{ name.dc }}</div>
           </div>-->
-
-          <md-card dir-paginate="name in ul.names | itemsPerPage: 50">
-            <md-card-content>
-              <div layout="row" layout-wrap>
-                <div flex="75">
-                 <span class="md-title">{{ name.nm }}</span><br/>
-                  <span class="name-dsc" >
-                    {{ name.dc }}
-                  </span>
+          <div ng-if="ul.gender!=='favs'">
+            <md-card dir-paginate="name in ul.names | itemsPerPage: 50" current-page="ul.currentPage">
+              <md-card-content>
+                <div layout="row" layout-wrap>
+                  <div flex="75" class="baby-nm-ds" style="display: flex;">
+                    <i class="fa fa-lg md-fa-lg" ng-class="name.sx=='b'?'fa-male baby-boy':'fa-female baby-grl'" ></i>
+                    <div>
+                      <span class="md-title">{{ name.nm }}</span><br/>
+                      <span class="name-dsc" >
+                        {{ name.dc }}
+                      </span>
+                    </div>
+                  </div>
+                  <div flex="25" >
+                    <md-button class="md-fab md-mini pull-right" aria-label="Add to Favorites" ng-click="ul.addToFavs(name, true)">
+                      <md-tooltip>
+                        Add to Favorites
+                      </md-tooltip>
+                      <i class="fa fa-lg md-fa-lg" ng-class="name.fv?'fa-star-o':'fa-star'" ></i>
+                    </md-button>
+                  </div>
                 </div>
-                <div flex="25" >
-                  <md-button class="md-fab md-mini pull-right" aria-label="Use Android">
-                    <i class="fa fa-star fa-lg md-fa-lg"></i>
-                  </md-button>
-                </div>
-              </div>
-
-
-            </md-card-content>
-            <!--<div class="md-actions" layout="row" layout-align="end center">
-              <md-button>Like</md-button>
-              <md-button>Add</md-button>
-            </div>-->
-          </md-card>
-          <dir-pagination-controls boundary-links="true" on-page-change="ul.pageChange(newPageNumber)" class="pull-right">
+              </md-card-content>
+              <!--<div class="md-actions" layout="row" layout-align="end center">
+                <md-button>Like</md-button>
+                <md-button>Add</md-button>
+              </div>-->
+            </md-card>
+          </div>
+          <div ng-if="ul.gender==='favs'">
+            <div dir-paginate="name in ul.names | itemsPerPage: 500"   current-page="ul.currentPage">
+              <md-card ng-if="name.fv===true">
+                <md-card-content>
+                  <div layout="row" layout-wrap>
+                    <div flex="75" class="baby-nm-ds" style="display: flex;">
+                      <i class="fa fa-lg md-fa-lg" ng-class="name.sx=='b'?'fa-male baby-boy':'fa-female baby-grl'" ></i>
+                      <div>
+                        <span class="md-title">{{ name.nm }}</span><br/>
+                      <span class="name-dsc" >
+                        {{ name.dc }}
+                      </span>
+                      </div>
+                    </div>
+                    <div flex="25" >
+                      <md-button class="md-fab md-mini md-warn pull-right" aria-label="Add to Favorites" ng-click="ul.addToFavs(name, false)">
+                        <md-tooltip>
+                          Remove from Favorites
+                        </md-tooltip>
+                        <i class="fa fa-times fa-lg md-fa-lg"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-card-content>
+              </md-card>
+            </div>
+          </div>
+          <dir-pagination-controls on-page-change="ul.pageChange(newPageNumber)" class="pull-right">
           </dir-pagination-controls>
         </md-content>
 
