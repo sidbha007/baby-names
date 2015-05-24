@@ -77,7 +77,7 @@
             <md-card dir-paginate="name in ul.names | itemsPerPage: 50" current-page="ul.currentPage">
               <md-card-content>
                 <div layout="row" layout-wrap>
-                  <div flex="75" class="baby-nm-ds" style="display: flex;">
+                  <div flex="75" class="baby-nm-ds">
                     <i class="fa fa-lg md-fa-lg" ng-class="name.sx=='b'?'fa-male baby-boy':'fa-female baby-grl'" ></i>
                     <div>
                       <span class="md-title">{{ name.nm }}</span><br/>
@@ -107,7 +107,7 @@
               <md-card ng-if="name.fv===true">
                 <md-card-content>
                   <div layout="row" layout-wrap>
-                    <div flex="75" class="baby-nm-ds" style="display: flex;">
+                    <div flex="75" class="baby-nm-ds">
                       <i class="fa fa-lg md-fa-lg" ng-class="name.sx=='b'?'fa-male baby-boy':'fa-female baby-grl'" ></i>
                       <div>
                         <span class="md-title">{{ name.nm }}</span><br/>
