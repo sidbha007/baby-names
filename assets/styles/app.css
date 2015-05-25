@@ -160,6 +160,7 @@ md-divider.divider-btm{
 .baby-nm-ds i{
   font-size: 30px;
   padding: 12px 15px 0 5px;
+  min-width: 40px;
 }
 
 .baby-grl{
@@ -172,4 +173,120 @@ md-divider.divider-btm{
 
 .loading-br{
   padding:5px 0;
+}
+
+.site-sidenav, .site-sidenav.md-locked-open-add-active, .site-sidenav.md-locked-open {
+  max-width: 200px;
+  min-width: 200px;
+  width: 200px;
+}
+
+.site-sidenav > * {
+  min-width: 164px;
+}
+
+.docs-menu li {
+  margin: 0;
+}
+ul li {
+  list-style-position: inside;
+  margin-left: 16px;
+  margin-top: 3px;
+  padding: 0;
+}
+
+
+.docs-menu, .docs-menu ul {
+  list-style: outside none none;
+  padding: 0;
+}
+.docs-menu li {
+  margin: 0;
+}
+.docs-menu > li:nth-child(1) {
+  border-top: medium none;
+}
+.md-whiteframe-glow-z2 {
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 4px 3px rgba(0, 0, 0, 0.14), 0 0 8px 1px rgba(0, 0, 0, 0.12);
+}
+.docs-menu > li {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.docs-menu > li:nth-child(-n+1) {
+  border-top: medium none;
+}
+.docs-menu .md-button {
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
+}
+.docs-menu md-select {
+  margin: 0;
+  width: 100%;
+}
+.docs-menu md-select md-select-label {
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+.docs-menu md-select md-select-label span {
+  margin-right: auto;
+  padding-left: 13px;
+}
+.docs-menu md-select .md-select-icon {
+  margin-right: 28px;
+}
+.docs-menu button.md-button::-moz-focus-inner {
+  padding: 0;
+}
+.docs-menu .md-button.active {
+  color: #03a9f4;
+}
+.menu-heading {
+  color: rgba(0, 0, 0, 0.54);
+  display: block;
+  line-height: 32px;
+  margin: 0;
+  padding: 8px 16px 0;
+  text-align: left;
+  width: 100%;
+}
+.docs-menu li.parentActive, .docs-menu li.parentActive .menu-toggle-list {
+  background-color: #f6f6f6;
+}
+.menu-toggle-list {
+  background: #fff none repeat scroll 0 0;
+  max-height: 2000px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.75s cubic-bezier(0.35, 0, 0.25, 1) 0s;
+  z-index: 1;
+}
+.menu-toggle-list.ng-hide {
+  max-height: 0;
+}
+.docs-menu .menu-toggle-list a.md-button {
+  display: block;
+  font-weight: 400;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+}
+.md-button-toggle .md-toggle-icon {
+  display: block;
+  margin-left: auto;
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out 0s;
+  vertical-align: middle;
+}
+.md-button-toggle .md-toggle-icon.toggled {
+  transform: rotate(0deg);
 }

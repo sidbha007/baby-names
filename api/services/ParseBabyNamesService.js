@@ -114,7 +114,7 @@ function fetchPageNamesFromBachpan(urlSuffix, cb){
           //log.info('foo: ', $(foo).html());
           if($('.c1 a', this).text()){
             var nm = $('.c1 a', this).text().trim();
-            var mn = $('.c2 .tblMeaning a', this).text().trim();
+            var mn = $('.c2 .tblMeaning', this).text().trim();
             var gender = $('.c4', this).text().trim();
             var numerology = $('.c3', this).text().trim();
             if(nm!==''){
@@ -153,7 +153,8 @@ function fetchAllNamesFromBachpan(urlSuffix, pageIdx, cb){
       found=false;
     }else{
       log.info('result: ', result);
-      insertIndianNamesBachPan(result);
+      //insertIndianNamesBachPan(result);
+      updateIndianNamesDescBachPan(result);
       pageIdx++;
       fetchAllNamesFromBachpan(urlSuffix, pageIdx, cb);
       return;
@@ -164,6 +165,26 @@ function fetchAllNamesFromBachpan(urlSuffix, pageIdx, cb){
   if (cb) cb();
 
 }
+
+function updateIndianNamesDescBachPan(results){
+  _.forEach(results, function(result) {
+
+    log.info(' Updating name :', result);
+    Name.update({
+      nm: result.name,
+      sx: result.gender
+    }, {
+      dc: result.meaning
+    }).exec(function (err, names) {
+        if (err) {
+          log.error(err);
+        }
+      });
+
+  });
+}
+
+
 
 function insertIndianNamesBachPan(results){
   _.forEach(results, function(result) {

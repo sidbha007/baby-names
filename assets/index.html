@@ -22,7 +22,7 @@
   <body ng-app="starterApp" layout="column" ng-controller="UserController as ul" autoscroll="true">
 
     <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show Names List">
+      <md-button class="menu" hide-gt-md ng-click="ul.toggleList()" aria-label="Show Names List">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <h1>Baby Names</h1>
@@ -30,16 +30,30 @@
     <a id="top"></a>
     <div flex layout="row" style="overflow: auto;">
 
-        <!--<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
+        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left">
+          <ul class="docs-menu">
+            <li ng-class="{'parentActive' : isSectionSelected(section)}" class="parent-list-item">
+              <a class="md-button md-default-theme" ng-click="focusSection()" ng-href="#/getting-started" ng-class="{'active' : isSelected()}" tabindex="0" href="#/getting-started"><span class="ng-binding ng-scope">
+  <i class="fa fa-child fa-fw" ></i> Baby Names
+  </span>
+              </a>
+            </li>
+            <li ng-class="{'parentActive' : isSectionSelected(section)}" class="parent-list-item">
+              <a class="md-button md-default-theme" ng-click="focusSection()" ng-href="#/getting-started" ng-class="{'active' : isSelected()}" tabindex="0" href="#/getting-started"><span class="ng-binding ng-scope">
+  <i class="fa fa-plus fa-fw" ></i> Add a Name
+  </span>
+              </a>
+            </li>
+          </ul>
           <md-list>
             <md-item ng-repeat="it in ul.users">
                 <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                  {{it.name}}
+                  <!--<md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>-->
+                  <i class="fa fa-child fa-fw" ></i> {{it.name}}
                 </md-button>
             </md-item>
           </md-list>
-        </md-sidenav>-->
+        </md-sidenav>
 
         <md-content md-scroll-y flex layout-padding id="content" ng-cloak>
           <!--<md-item ng-repeat="name in ul.names">
