@@ -8,6 +8,7 @@
                 'ngResource',
                 'ngMaterial',
                 'ngTouch',
+                'ngMessages',
                 //'oc.lazyLoad',
                 'ui.router',
                 'angularUtils.directives.dirPagination'

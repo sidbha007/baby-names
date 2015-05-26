@@ -53,6 +53,12 @@
 
         function warning(message, data){
             //toastr.warning(message);
+          $mdToast.show(
+            $mdToast.simple()
+              .content(message)
+              .position('bottom right')
+              .hideDelay(3000)
+          );
             $log.warn('Warning: ' + message, data);
         }
 

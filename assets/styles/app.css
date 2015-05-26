@@ -291,3 +291,9 @@ ul li {
 .md-button-toggle .md-toggle-icon.toggled {
   transform: rotate(0deg);
 }
+
+
+
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
+

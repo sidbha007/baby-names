@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<h2>Add a Name</h2>
+<hr/>
+<form name="nameForm">
+  <md-radio-group layout="row" name="sex" ng-model="name.sx">
+    <md-radio-button value="g" class="md-primary" >Girl</md-radio-button>
+    <md-radio-button value="b"> Boy </md-radio-button>
+  </md-radio-group>
+  <md-input-container>
+    <label>Name</label>
+    <input required name="name" ng-model="name.nm">
+    <div ng-messages="nameForm.name.$error">
+      <div ng-message="required">Name is required</div>
+    </div>
+  </md-input-container>
+  <md-input-container>
+    <label>Meaning</label>
+    <input required name="desc" ng-model="name.dc">
+    <div ng-messages="nameForm.desc.$error">
+      <div ng-message="required">Meaning is required.</div>
+    </div>
+  </md-input-container>
+</form>
+<hr/>
+<div class="md-actions" layout="row" layout-align="start center">
+  <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+  <md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
+</div>
