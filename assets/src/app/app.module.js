@@ -13,7 +13,8 @@
   angular
     .module('babyn')
     .config(mdThemeConfig)
-    .config(paginationTemplate);
+    .config(paginationTemplate)
+    .config(satellizerCfg);
 
 
   mdThemeConfig.$inject = ['$mdThemingProvider', '$mdIconProvider'];
@@ -36,6 +37,14 @@
   function paginationTemplate(paginationTemplateProvider){
     paginationTemplateProvider.setPath('./bower_components/angular-utils-pagination/dirPagination.tpl.html');
   }
+
+  satellizerCfg.$inject = ['$authProvider'];
+  function satellizerCfg($authProvider){
+    $authProvider.facebook({
+      clientId: '510172019132188'
+    });
+  }
+
 
 
 

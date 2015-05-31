@@ -189,7 +189,8 @@ md-divider.divider-btm{
 .docs-menu li {
   margin: 0;
 }
-ul li {
+
+.docs-menu ul li {
   list-style-position: inside;
   margin-left: 16px;
   margin-top: 3px;

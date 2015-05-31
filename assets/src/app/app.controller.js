@@ -9,18 +9,19 @@
     .module('babyn')
     .controller('App', App);
 
-  App.$inject = ['$scope', '$mdSidenav', '$mdBottomSheet', '$q', '$state'];
-  function App($scope, $mdSidenav, $mdBottomSheet, $q, $state){
+  App.$inject = ['$scope', '$mdSidenav', '$mdBottomSheet', '$q', '$state', '$auth'];
+  function App($scope, $mdSidenav, $mdBottomSheet, $q, $state, $auth){
     var vm = $scope;
     vm.selectPg = selectPg;
     vm.toggleList   = toggleUsersList;
     vm.isSelected   = isSelected;
+    vm.authenticate = authenticate;
 
     /**
      * Select the current avatars
      * @param menuId
      */
-    function selectPg ( nm ) {
+    function selectPg ( ) {
       vm.toggleList();
     }
 
@@ -39,5 +40,10 @@
     function isSelected(nm){
       return $state.current.name===nm;
     }
+
+    function authenticate(provider) {
+      $auth.authenticate(provider);
+    }
+
   }
 })();

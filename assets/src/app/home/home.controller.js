@@ -9,15 +9,17 @@
     .module('babyn')
     .controller('Home', Home);
 
-  Home.$inject = ['$scope', 'dataservice','$document', 'logger'];
-  function Home($scope, dataservice, $document, logger){
+  Home.$inject = ['$scope', 'dataservice','$document', 'logger', '$timeout'];
+  function Home($scope, dataservice, $document, logger, $timeout){
     var vm= $scope;
     vm.loadNames    = loadNames;
     vm.selectedLtr  = 'A';
     vm.gender       = 'g';
     vm.setLetter    = setLetter;
     vm.pageChange   = pageChange;
-    vm.currentPage = 1;
+    vm.pgntn = {
+          currPage: 1
+      };
     vm.names        = [ ];
     vm.letters        = [ ];
     vm.loading        = false;
@@ -50,8 +52,10 @@
       dataservice.getNames(crit || getCrit())
         .then(function (data) {
           vm.names = data;
-          vm.currentPage = 1;
           vm.loading = false;
+          $timeout(function() {
+            vm.pgntn.currPage = 1;
+          }, 0);
         });
 
     }

@@ -33,7 +33,7 @@
           });
         }
       } else {
-        logger.warning('Validation error(s). Please check field values.');
+        logger.warning('Please fill required values.');
       }
     }
 

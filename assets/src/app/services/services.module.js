@@ -9,6 +9,7 @@
                 'ngMaterial',
                 'ngTouch',
                 'ngMessages',
+                'satellizer',
                 //'oc.lazyLoad',
                 'ui.router',
                 'angularUtils.directives.dirPagination'
